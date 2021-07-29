@@ -6,7 +6,7 @@ use command::CommandType;
 
 pub trait PackageManagement {
     fn print(&self);
-    fn parse(&self, command_type: CommandType);
+    fn execute(&self, command_type: CommandType, package_name: String) -> bool;
 }
 
 pub struct PackageManager {
@@ -31,7 +31,6 @@ impl PackageManager {
                 return Some(command);
             }
         }
-
         return None;
     }
 }
@@ -44,12 +43,21 @@ impl PackageManagement for PackageManager {
             println!("{}", command);
         }
     }
-    fn parse(&self, command_type: CommandType) {
+
+    fn execute(&self, command_type: CommandType, package_name: String) -> bool {
         let command: Option<&Command> = self.find_command(command_type);
 
         match command {
-            Some(x) => println!("Found command {}", x),
-            None => println!("Found nothing")
+            Some(x) => {
+                if x.requires_package == true && package_name.is_empty() {
+                    println!("Command: {} requires package.", x.name);
+                }        
+                return true;
+            },
+            None => { 
+                println!("Found nothing.");
+                return false
+            },
         }
 
     }
