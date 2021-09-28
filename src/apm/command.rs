@@ -7,7 +7,8 @@ pub enum CommandType {
     Upgrade,
     Search, 
     List,
-    Clean
+    Clean,
+    Help
 }
 
 #[derive(PartialEq, PartialOrd)]
@@ -39,10 +40,10 @@ impl std::fmt::Display for Command {
             CommandType::Search => command_type = "search",
             CommandType::List => command_type = "list",
             CommandType::Clean => command_type = "clean",
+            CommandType::Help => command_type = "help",
         }
 
-        write!(f, "(Name a: {0}, Command Type: {1}, Requires Package: {2})", 
-            self.name, command_type, self.requires_package)
+        write!(f, "(Name a: {0}, Command Type: {1}, Requires Package: {2})", self.name, command_type, self.requires_package)
     }
 }
 

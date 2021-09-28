@@ -4,6 +4,8 @@ pub mod command;
 use command::Command;
 use command::CommandType;
 
+mod StdCommand { use std::process::Command; }
+
 pub trait PackageManagement {
     fn print(&self);
     fn execute(&self, command_type: CommandType, package_name: String) -> bool;
@@ -51,7 +53,8 @@ impl PackageManagement for PackageManager {
             Some(x) => {
                 if x.requires_package == true && package_name.is_empty() {
                     println!("Command: {} requires package.", x.name);
-                }        
+                }       
+                
                 return true;
             },
             None => { 

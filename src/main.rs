@@ -19,7 +19,6 @@ fn arguments(package_manager: PackageManager){
     let _bin = Path::new(bin).file_stem().unwrap().to_str().unwrap();
 
     let command_argument: &str = &env_args[1];
-    
     let package_argument: &str;
     
     if env_args.len() - 1 >= 2 {
@@ -40,23 +39,48 @@ fn arguments(package_manager: PackageManager){
             println!("Install command detected.");
             package_manager.execute(CommandType::Install, package_argument.to_string());
         },
-        "reinstall" => println!("Reinstall command detected."),
-        "uninstall" => println!("Uninstall command detected."),
-        "update" => println!("Update command detected."),
-        "upgrade" => println!("Upgrade command detected."),
-        "search" => println!("Search command detected."),
-        "list" => println!("List command detected."),
-        "clean" => println!("Clean command detected."),
-        _ => println!("Command: {} is invalid.", command_argument),
+        "reinstall" => {
+            println!("Reinstall command detected.");
+            package_manager.execute(CommandType::Reinstall, package_argument.to_string());
+        },
+        "uninstall" => { 
+            println!("Uninstall command detected.");
+            package_manager.execute(CommandType::Uninstall, package_argument.to_string());
+        },
+        "update" => { 
+            println!("Update command detected.");
+            package_manager.execute(CommandType::Update, package_argument.to_string());
+        },
+        "upgrade" => { 
+            println!("Upgrade command detected.");
+            package_manager.execute(CommandType::Upgrade, package_argument.to_string());
+        },
+        "search" => { 
+            println!("Search command detected.");
+            package_manager.execute(CommandType::Search, package_argument.to_string());
+        },
+        "list" => {
+            println!("List command detected.");
+            package_manager.execute(CommandType::List, package_argument.to_string());
+        },
+        "clean" => { 
+            println!("Clean command detected.");
+            package_manager.execute(CommandType::Clean, package_argument.to_string());
+        },
+        "help" => {
+            println!("Help command detected.");
+            package_manager.execute(CommandType::Help, package_argument.to_string());
+        },
+        _ => { 
+            println!("Command: {} is invalid.", command_argument)
+
+        },
     }
 }
 
 fn main() {
-    let info = os_info::get();
-    // Print full information:
-    println!("OS information: {}", info);
     let package_manager: PackageManager;
-    match info.os_type(){
+    match os_info::get().os_type(){
         Type::Alpine => package_manager = managers::apk(),
         Type::Arch => package_manager = managers::pacman(),
         Type::CentOS => package_manager = managers::yum(),
@@ -78,7 +102,6 @@ fn main() {
         },
     }    
     package_manager.print();
-
     arguments(package_manager);
 }
  
