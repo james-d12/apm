@@ -12,13 +12,15 @@ APM uses [os_info](https://github.com/stanislav-tkach/os_info) to get the curren
 ## Package Managers
 
 | Package Manager  | Install | Uninstall | Update | Upgrade | Search | List |
-| ---------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| **Apt**          | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Apk**          | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Yum**          | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Dnf**          | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Pacman**       | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Zypper**       | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Eopkg**        | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
-| **Choco**        | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | 
-| **Brew**         | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  |
+| ---------------- | ---- | --- | --- | --- | --- | --- |
+| **Apt**          | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Apk**          | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Yum**          | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Dnf**          | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Pacman**       | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Zypper**       | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Eopkg**        | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Choco**        | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  |
+| **Brew**         | ✔️  | ✔️  | ✔️  | ✔️ | ✔️ | ✔️  | 
+| **NPM**          | ❌  | ❌  | ❌  | ❌ | ❌ | ❌  | 
+| **Conan**        | ❌  | ❌  | ❌  | ❌ | ❌ | ❌  | 
