@@ -1,10 +1,11 @@
 #[path = "./command.rs"]
 pub mod command;
 
+#[path = "./terminal.rs"]
+mod terminal;
+
 use command::Command;
 use command::CommandType;
-
-mod StdCommand { use std::process::Command; }
 
 pub trait PackageManagement {
     fn print(&self);
@@ -39,11 +40,12 @@ impl PackageManager {
 
 impl PackageManagement for PackageManager {
     fn print(&self) {
-        println!("Name: {0}, Package Name: {1}", self.name, self.package_name);
-
+        println!("---------------------- {0} ----------------------", self.name);
+        println!("Package Name: {0}", self.package_name);
         for command in self.commands.iter() {
             println!("{}", command);
         }
+        println!("-------------------------------------------------");
     }
 
     fn execute(&self, command_type: CommandType, package_name: String) -> bool {
@@ -52,10 +54,21 @@ impl PackageManagement for PackageManager {
         match command {
             Some(x) => {
                 if x.requires_package == true && package_name.is_empty() {
-                    println!("Command: {} requires package.", x.name);
+                    println!("Command: {} requires a package as an argument.", x.name);
+                    return false;
                 }       
                 
-                return true;
+                let mut argument: String = "".to_owned();
+
+                argument.push_str(&self.package_name);
+                argument.push_str(" ");
+                argument.push_str(&x.name);
+                argument.push_str(" ");
+                argument.push_str(&package_name);
+
+                println!("Executing... {0}", argument);
+
+                return terminal::execute(&argument);
             },
             None => { 
                 println!("Found nothing.");

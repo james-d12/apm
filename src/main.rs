@@ -13,27 +13,7 @@ use std::env;
 use std::path::Path;
 
 
-fn arguments(package_manager: PackageManager){
-    let env_args = env::args().collect::<Vec<String>>();
-    let (bin, _remainer) = env_args.split_first().unwrap();
-    let _bin = Path::new(bin).file_stem().unwrap().to_str().unwrap();
-
-    let command_argument: &str = &env_args[1];
-    let package_argument: &str;
-    
-    if env_args.len() - 1 >= 2 {
-        package_argument = &env_args[2];
-        
-        println!("{}", package_argument);
-        if package_argument == "" {
-            println!("argument 2 is empty!");
-            std::process::exit(1);  
-        }
-    } else {
-        package_argument = ""
-    }
-
-    println!("Command: {}", package_argument);
+fn match_command(package_manager: PackageManager, command_argument: &str, package_argument: &str) {
     match command_argument {
         "install" => { 
             println!("Install command detected.");
@@ -76,6 +56,28 @@ fn arguments(package_manager: PackageManager){
 
         },
     }
+}
+
+fn arguments(package_manager: PackageManager){
+    let env_args = env::args().collect::<Vec<String>>();
+    let (bin, _remainer) = env_args.split_first().unwrap();
+    let _bin = Path::new(bin).file_stem().unwrap().to_str().unwrap();
+
+    let command_argument: &str = &env_args[1];
+    let package_argument: &str;
+    
+    if env_args.len() - 1 >= 2 {
+        package_argument = &env_args[2];
+        
+        if package_argument == "" {
+            println!("argument 2 is empty!");
+            std::process::exit(1);  
+        }
+    } else {
+        package_argument = ""
+    }
+
+    match_command(package_manager, command_argument, package_argument);
 }
 
 fn main() {
