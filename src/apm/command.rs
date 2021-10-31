@@ -1,4 +1,6 @@
 #[derive(PartialEq, PartialOrd)]
+#[derive(Clone, Copy)]
+#[derive(Debug)]
 pub enum CommandType {
     Install, 
     Reinstall, 
@@ -47,4 +49,24 @@ impl std::fmt::Display for Command {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+  
+    use super::Command;
+    use super::CommandType;
 
+    #[test]
+    fn test_constructor() {
+        let command_name: &str = "install";
+        let command_type: CommandType = CommandType::Install;
+        let requires_package: bool = true;
+
+        let command: Command = Command::new(command_name, command_type, requires_package);
+
+        assert_eq!(command.name, command_name);
+        assert_eq!(command.command_type, command_type);
+        assert_eq!(command.requires_package, requires_package);
+    }
+
+}

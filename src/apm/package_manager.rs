@@ -6,6 +6,7 @@ mod terminal;
 use command::Command;
 use command::CommandType;
 
+
 pub trait PackageManagement {
     fn print(&self);
     fn execute(&self, command_type: CommandType, package_name: String) -> bool;
@@ -56,17 +57,15 @@ impl PackageManagement for PackageManager {
                     println!("Command: {} requires a package as an argument.", x.name);
                     return false;
                 }                       
-                let test: String = format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
-                println!("Executing... {0}", test);
+                let argument: String = format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
+                println!("Executing... {0}", argument);
 
-                //return terminal::execute(&argument);
-                return true;
+                return terminal::execute(&argument);
             },
             None => { 
                 println!("Found nothing.");
                 return false
             },
         }
-
     }
 }

@@ -22,8 +22,8 @@ fn match_command(package_manager: PackageManager, args: arguments::Argument) {
 }
 
 fn main() {
-    let package_manager = apm::managers::decide_package_manager();
-
+    let package_manager: Option<PackageManager> = apm::managers::decide_package_manager();
+    
     match package_manager {
         Some(package_manager) => { 
             let args: arguments::Argument = arguments::process_arguments();
