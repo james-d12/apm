@@ -30,7 +30,7 @@ impl Command {
 
 impl std::fmt::Display for Command {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let mut command_type: &str = "";
+        let command_type: &str;
         match self.command_type{
             CommandType::Install => command_type = "install",
             CommandType::Reinstall => command_type = "reinstall",

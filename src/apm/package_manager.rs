@@ -3,7 +3,6 @@ pub mod command;
 
 #[path = "./terminal.rs"]
 mod terminal;
-
 use command::Command;
 use command::CommandType;
 
@@ -45,7 +44,7 @@ impl PackageManagement for PackageManager {
         for command in self.commands.iter() {
             println!("{}", command);
         }
-        println!("-------------------------------------------------");
+        println!("----------------------{:-<1$}----------------------", "", self.name.chars().count() + 2);
     }
 
     fn execute(&self, command_type: CommandType, package_name: String) -> bool {
@@ -56,19 +55,12 @@ impl PackageManagement for PackageManager {
                 if x.requires_package == true && package_name.is_empty() {
                     println!("Command: {} requires a package as an argument.", x.name);
                     return false;
-                }       
-                
-                let mut argument: String = "".to_owned();
+                }                       
+                let test: String = format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
+                println!("Executing... {0}", test);
 
-                argument.push_str(&self.package_name);
-                argument.push_str(" ");
-                argument.push_str(&x.name);
-                argument.push_str(" ");
-                argument.push_str(&package_name);
-
-                println!("Executing... {0}", argument);
-
-                return terminal::execute(&argument);
+                //return terminal::execute(&argument);
+                return true;
             },
             None => { 
                 println!("Found nothing.");
