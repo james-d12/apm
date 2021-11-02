@@ -51,8 +51,6 @@ impl std::fmt::Display for Command {
 
 #[cfg(test)]
 mod tests {
-    // Note this useful idiom: importing names from outer (for mod tests) scope.
-  
     use super::Command;
     use super::CommandType;
 

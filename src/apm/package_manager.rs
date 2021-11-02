@@ -1,11 +1,6 @@
-#[path = "./command.rs"]
-pub mod command;
-
-#[path = "./terminal.rs"]
-mod terminal;
-use command::Command;
-use command::CommandType;
-
+use crate::apm::terminal;
+use crate::apm::command::Command;
+use crate::apm::command::CommandType;
 
 pub trait PackageManagement {
     fn print(&self);
@@ -58,9 +53,10 @@ impl PackageManagement for PackageManager {
                     return false;
                 }                       
                 let argument: String = format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
-                println!("Executing... {0}", argument);
-
-                return terminal::execute(&argument);
+                println!("---------------[Executing Command]------------------");
+                let res = terminal::execute(&argument);
+                println!("---------------[Finished Command]------------------");
+                return res;
             },
             None => { 
                 println!("Found nothing.");

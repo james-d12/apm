@@ -1,10 +1,11 @@
 mod apm;
 
 use apm::arguments;
+use apm::checker;
+use apm::command::Command;
+use apm::command::CommandType;
 use apm::package_manager::PackageManager;
 use apm::package_manager::PackageManagement;
-use apm::package_manager::command::Command;
-use apm::package_manager::command::CommandType;
  
 fn match_command(package_manager: PackageManager, args: arguments::Argument) {
     match args.command_argument.as_str() {
@@ -26,13 +27,20 @@ fn main() {
     
     match package_manager {
         Some(package_manager) => { 
-            let args: arguments::Argument = arguments::process_arguments();
+            let args: arguments::Argument = arguments::get_arguments();
 
+            println!("{0} {1} {2}", args.command_argument, args.package_argument, args.switch_argument);
+            
             if args.command_argument == "--help" {
                 println!("Help");
                 std::process::exit(0);
             } else if args.command_argument == "--info" {
                 package_manager.print();
+                std::process::exit(0);
+            } else if args.command_argument == "--local" {
+                if checker::check_is_npm() {
+                    println!("Ok, running with npm");
+                } 
                 std::process::exit(0);
             }
 
