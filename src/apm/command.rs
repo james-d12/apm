@@ -10,7 +10,12 @@ pub enum CommandType {
     Search, 
     List,
     Clean,
-    Help
+    Help,
+    Unknown
+}
+
+pub fn get_command_type_as_string(command_type: CommandType) -> String {
+    return command_type.to_string().to_lowercase();
 }
 
 #[derive(PartialEq, PartialOrd)]
@@ -32,20 +37,14 @@ impl Command {
 
 impl std::fmt::Display for Command {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let command_type: &str;
-        match self.command_type{
-            CommandType::Install => command_type = "install",
-            CommandType::Reinstall => command_type = "reinstall",
-            CommandType::Uninstall => command_type = "uninstall",
-            CommandType::Update => command_type = "update",
-            CommandType::Upgrade => command_type = "upgrade",
-            CommandType::Search => command_type = "search",
-            CommandType::List => command_type = "list",
-            CommandType::Clean => command_type = "clean",
-            CommandType::Help => command_type = "help",
-        }
+        let command_type = get_command_type_as_string(self.command_type);
+        write!(f, "[Name: {0} | Command Type: {1} | Requires Package: {2}]", self.name, command_type, self.requires_package)
+    }
+}
 
-        write!(f, "(Name a: {0}, Command Type: {1}, Requires Package: {2})", self.name, command_type, self.requires_package)
+impl std::fmt::Display for CommandType {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{:?}", self)
     }
 }
 

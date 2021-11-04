@@ -23,8 +23,7 @@ impl PackageManager {
     }
     
     fn find_command(&self, command_type: CommandType) -> Option<&Command> {
-        let iter = self.commands.iter();
-        for command in iter {
+        for command in self.commands.iter() {
             if command.command_type == command_type {
                 return Some(command);
             }
@@ -53,9 +52,7 @@ impl PackageManagement for PackageManager {
                     return false;
                 }                       
                 let argument: String = format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
-                println!("---------------[Executing Command]------------------");
                 let res = terminal::execute(&argument);
-                println!("---------------[Finished Command]------------------");
                 return res;
             },
             None => { 

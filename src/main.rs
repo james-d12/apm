@@ -17,6 +17,7 @@ fn match_command(package_manager: PackageManager, args: arguments::Argument) {
         "list" => { package_manager.execute(CommandType::List, args.package_argument); },
         "clean" => {  package_manager.execute(CommandType::Clean, args.package_argument); },
         "help" => { package_manager.execute(CommandType::Help, args.package_argument); },
+        "print" => { package_manager.print() }
         _ => {  println!("Command: {0} is invalid.", args.package_argument) },
     }
 }

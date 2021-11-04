@@ -28,7 +28,6 @@ pub fn execute(command: &str) -> bool {
     return execute_helper(Interpreter::Shell, command);
 }
 
-
 #[cfg(test)]
 mod tests {
     // Note this useful idiom: importing names from outer (for mod tests) scope.

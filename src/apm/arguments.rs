@@ -12,12 +12,17 @@ fn get_matches() -> clap::ArgMatches {
         .about("Manages packages.")
         .arg(Arg::new("COMMAND")
             .about("The Command to run")
-            .required(true)
+            .required(false)
             .index(1))
         .arg(Arg::new("PACKAGE")
             .about("The Package to install.")
             .required(false)
             .index(2))
+        .arg(Arg::new("INFO")
+            .about("Outputs information about the current package manager.")
+            .short('i')
+            .long("--info")
+            .takes_value(false))
         .get_matches();
     return matches;
 }
@@ -26,8 +31,15 @@ fn process_arguments(matches: &clap::ArgMatches) -> Argument {
     let mut command_argument: String = String::new();
     let mut package_argument: String = String::new();
     
-    let valid_commands = [ "install", "uninstall", "update", "upgrade", "list", "search" ];
+    let valid_commands = [ "install", "uninstall", "update", "upgrade", "list", "search", "help", "clean" ];
     let commands_requiring_install = [ "install", "uninstall", "search" ];
+
+    if matches.is_present("INFO") {
+        return Argument {
+            command_argument: "print".to_string(),
+            package_argument: "".to_string()
+        }
+    }
 
     if let Some(i) = matches.value_of("COMMAND") {
         let lower = i.to_lowercase();
