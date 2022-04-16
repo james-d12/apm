@@ -6,7 +6,7 @@ pub struct Argument {
 }
  
 fn get_matches() -> clap::ArgMatches {
-    let matches = App::new("Agnostic Package Manager")
+    return App::new("Agnostic Package Manager")
         .version("0.1")
         .author("James Durban")
         .about("Manages packages.")
@@ -24,7 +24,6 @@ fn get_matches() -> clap::ArgMatches {
             .long("--info")
             .takes_value(false))
         .get_matches();
-    return matches;
 }
 
 fn process_arguments(matches: &clap::ArgMatches) -> Argument {
@@ -46,7 +45,6 @@ fn process_arguments(matches: &clap::ArgMatches) -> Argument {
         let formatted = lower.trim();
         command_argument = formatted.to_string();
 
-        
         if !valid_commands.contains(&formatted){
             println!("Invalid command argument: {}.", &formatted);
             std::process::exit(1);

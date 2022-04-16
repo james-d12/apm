@@ -1,37 +1,17 @@
 use std::process::Command;
 
-enum Interpreter {
-    Shell,
-    CommandLine
-}
-
-fn execute_helper(interpreter: Interpreter, command: &str) -> bool {
-    let output: std::process::ExitStatus;
-    match interpreter {
-        Interpreter::CommandLine => {
-            output = Command::new("cmd").args(["/C", command]).status().unwrap();
-        }
-        Interpreter::Shell => {
-            output = Command::new("sh").arg("-c").arg(command).status().unwrap();
-        }
-    }
-    return output.success();
-}
-
 #[cfg(target_os = "windows")]
 pub fn execute(command: &str) -> bool {
-    return execute_helper(Interpreter::CommandLine, command);
+    return Command::new("cmd").args(["/C", command]).status().unwrap().success();
 }
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 pub fn execute(command: &str) -> bool {
-    return execute_helper(Interpreter::Shell, command);
+    return Command::new("sh").arg("-c").arg(command).status().unwrap().success();
 }
 
 #[cfg(test)]
-mod tests {
-    // Note this useful idiom: importing names from outer (for mod tests) scope.
-  
+mod tests {  
     #[test]
     #[cfg(target_os = "windows")]
     fn test_execute() {

@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_zypper_manager() -> PackageManager{
+pub fn get_zypper() -> PackageManager{
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install, true),
         Command::new("rm", CommandType::Uninstall, true),

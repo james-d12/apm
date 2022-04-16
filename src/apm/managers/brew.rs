@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_brew_manager() -> PackageManager{
+pub fn get_brew() -> PackageManager{
     let commands: Vec<Command> = vec![
         Command::new("", CommandType::Install, true),
         Command::new("", CommandType::Uninstall, true),
