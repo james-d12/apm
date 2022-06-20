@@ -2,16 +2,16 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_brew() -> PackageManager{
+pub fn get_brew() -> PackageManager {
     let commands: Vec<Command> = vec![
-        Command::new("", CommandType::Install, true),
-        Command::new("", CommandType::Uninstall, true),
-        Command::new("", CommandType::Reinstall, true),
-        Command::new("", CommandType::Update, false),
-        Command::new("", CommandType::Upgrade, false),
-        Command::new("", CommandType::Search, true),
-        Command::new("", CommandType::List, false),
-        Command::new("", CommandType::Clean, false),
+        Command::new("", CommandType::Install),
+        Command::new("", CommandType::Uninstall),
+        Command::new("", CommandType::Reinstall),
+        Command::new("", CommandType::Update),
+        Command::new("", CommandType::Upgrade),
+        Command::new("", CommandType::Search),
+        Command::new("", CommandType::List),
+        Command::new("", CommandType::Clean),
     ];
     return PackageManager::new("Homebrew Package Manager", "brew", commands);
 }
