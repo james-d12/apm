@@ -1,43 +1,58 @@
-use clap::{Arg, App};
+use clap::{App, Arg};
 
 pub struct Argument {
     pub command_argument: String,
-    pub package_argument: String
+    pub package_argument: String,
 }
- 
+
 fn get_matches() -> clap::ArgMatches {
     return App::new("Agnostic Package Manager")
         .version("0.1")
         .author("James Durban")
         .about("Manages packages.")
-        .arg(Arg::new("COMMAND")
-            .about("The Command to run")
-            .required(false)
-            .index(1))
-        .arg(Arg::new("PACKAGE")
-            .about("The Package to install.")
-            .required(false)
-            .index(2))
-        .arg(Arg::new("INFO")
-            .about("Outputs information about the current package manager.")
-            .short('i')
-            .long("--info")
-            .takes_value(false))
+        .arg(
+            Arg::new("COMMAND")
+                .help("The Command to run")
+                .required(false)
+                .index(1),
+        )
+        .arg(
+            Arg::new("PACKAGE")
+                .help("The Package to install.")
+                .required(false)
+                .index(2),
+        )
+        .arg(
+            Arg::new("INFO")
+                .help("Outputs information about the current package manager.")
+                .short('i')
+                .long("--info")
+                .takes_value(false),
+        )
         .get_matches();
 }
 
 fn process_arguments(matches: &clap::ArgMatches) -> Argument {
     let mut command_argument: String = String::new();
     let mut package_argument: String = String::new();
-    
-    let valid_commands = [ "install", "uninstall", "update", "upgrade", "list", "search", "help", "clean" ];
-    let commands_requiring_install = [ "install", "uninstall", "search" ];
+
+    let valid_commands = [
+        "install",
+        "uninstall",
+        "update",
+        "upgrade",
+        "list",
+        "search",
+        "help",
+        "clean",
+    ];
+    let commands_requiring_install = ["install", "uninstall", "search"];
 
     if matches.is_present("INFO") {
         return Argument {
             command_argument: "print".to_string(),
-            package_argument: "".to_string()
-        }
+            package_argument: "".to_string(),
+        };
     }
 
     if let Some(i) = matches.value_of("COMMAND") {
@@ -45,7 +60,7 @@ fn process_arguments(matches: &clap::ArgMatches) -> Argument {
         let formatted = lower.trim();
         command_argument = formatted.to_string();
 
-        if !valid_commands.contains(&formatted){
+        if !valid_commands.contains(&formatted) {
             println!("Invalid command argument: {}.", &formatted);
             std::process::exit(1);
         }
@@ -61,8 +76,8 @@ fn process_arguments(matches: &clap::ArgMatches) -> Argument {
 
     return Argument {
         command_argument: command_argument,
-        package_argument: package_argument
-    }
+        package_argument: package_argument,
+    };
 }
 
 pub fn get_arguments() -> Argument {
