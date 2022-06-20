@@ -10,8 +10,8 @@ pub fn get_zypper() -> PackageManager {
         Command::new("refresh", CommandType::Update),
         Command::new("update", CommandType::Upgrade),
         Command::new("search", CommandType::Search),
-        Command::new("", CommandType::List),
-        Command::new("", CommandType::Clean),
+        Command::new("search -i", CommandType::List),
+        Command::new("clean", CommandType::Clean),
     ];
     return PackageManager::new("Zypper Package Manager", "zypper", commands);
 }

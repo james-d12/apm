@@ -4,7 +4,7 @@ use crate::apm::terminal;
 
 pub trait PackageManagement {
     fn print(&self);
-    fn execute(&self, command_type: CommandType, package_name: &String) -> bool;
+    fn execute(&self, command_type: CommandType, argument: &String) -> bool;
 }
 
 pub struct PackageManager {
@@ -19,6 +19,15 @@ impl PackageManager {
             name: name.to_string(),
             package_name: package_name.to_string(),
             commands: commands,
+        }
+    }
+
+    pub fn does_command_exists(&self, command_type: CommandType) -> bool {
+        let command = self.find_command(command_type);
+
+        match command {
+            Some(_command_object) => true,
+            _ => false,
         }
     }
 
@@ -49,13 +58,13 @@ impl PackageManagement for PackageManager {
         );
     }
 
-    fn execute(&self, command_type: CommandType, package_name: &String) -> bool {
+    fn execute(&self, command_type: CommandType, argument: &String) -> bool {
         let command: Option<&Command> = self.find_command(command_type);
 
         match command {
             Some(x) => {
                 let argument: String =
-                    format!("{0} {1} {2}", self.package_name, x.name, package_name).to_owned();
+                    format!("{0} {1} {2}", self.package_name, x.name, argument).to_owned();
                 let res = terminal::execute(&argument);
                 return res;
             }
