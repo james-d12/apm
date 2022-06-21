@@ -63,6 +63,12 @@ pub fn get_cli() -> Command<'static> {
                 .about("Lists all installed packages."),
         )
         .subcommand(
+            Command::new("outdated")
+                .short_flag('o')
+                .long_flag("outdated")
+                .about("Lists all outdated packages."),
+        )
+        .subcommand(
             Command::new("clean")
                 .short_flag('c')
                 .long_flag("clean")
@@ -161,6 +167,16 @@ pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) {
 
             print!("Listing all installed packages");
             let executed = package_manager.execute(CommandType::List, &"".to_string());
+        }
+        Some(("outdated", _sub_matches)) => {
+            let exists = package_manager.does_command_exists(CommandType::Outdated);
+
+            if !exists {
+                return;
+            }
+
+            print!("Listing all outdated packages");
+            let executed = package_manager.execute(CommandType::Outdated, &"".to_string());
         }
         Some(("clean", _sub_matches)) => {
             let exists = package_manager.does_command_exists(CommandType::Clean);

@@ -9,6 +9,7 @@ pub enum CommandType {
     List,
     Clean,
     Help,
+    Outdated,
 }
 
 pub fn get_command_type_as_string(command_type: CommandType) -> String {

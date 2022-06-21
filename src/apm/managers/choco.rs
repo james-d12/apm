@@ -15,6 +15,7 @@ pub fn get_choco() -> PackageManager {
         Command::new("search", CommandType::Search),
         Command::new("list --local-only", CommandType::List),
         Command::new("help", CommandType::Help),
+        Command::new("outdated", CommandType::Outdated),
     ];
     return PackageManager::new("Chocolatey Package Manager", "choco", commands);
 }
