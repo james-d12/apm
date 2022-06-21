@@ -12,72 +12,62 @@ pub fn get_cli() -> Command<'static> {
         .arg_required_else_help(true)
         .subcommand(
             Command::new("install")
-                .short_flag('i')
-                .long_flag("install")
+                .alias("i")
                 .about("installs a provided package.")
                 .arg(arg!(<PACKAGE> "The package to install"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("uninstall")
-                .short_flag('r')
-                .long_flag("uninstall")
+                .alias("u")
                 .about("Uninstalls a provided package.")
                 .arg(arg!(<PACKAGE> "The package to uninstall"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("reinstall")
-                .short_flag('e')
-                .long_flag("reinstall")
+                .alias("r")
                 .about("Reinstalls a provided package.")
                 .arg(arg!(<PACKAGE> "The package to reinstall"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("update")
-                .short_flag('u')
-                .long_flag("update")
+                .alias("ud")
                 .about("Updates repositories."),
         )
         .subcommand(
             Command::new("upgrade")
-                .short_flag('g')
-                .long_flag("upgrade")
+                .alias("ug")
                 .about("Upgrades a package to latest version.")
                 .arg(arg!(<PACKAGE> "The package to upgrade."))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("search")
-                .short_flag('s')
-                .long_flag("search")
+                .alias("s")
                 .about("Searches for a package.")
                 .arg(arg!(<PACKAGE> "The package to search for"))
                 .arg_required_else_help(true),
         )
         .subcommand(
             Command::new("list")
-                .short_flag('l')
-                .long_flag("list")
+                .alias("ls")
                 .about("Lists all installed packages."),
         )
         .subcommand(
             Command::new("outdated")
-                .short_flag('o')
-                .long_flag("outdated")
+                .alias("od")
                 .about("Lists all outdated packages."),
         )
         .subcommand(
             Command::new("clean")
-                .short_flag('c')
-                .long_flag("clean")
+                .alias("c")
                 .about("Cleans package manager's cache"),
         )
         .subcommand(
             Command::new("info")
-                .short_flag('f')
-                .long_flag("info")
+                .alias("if")
                 .about("Show's info about apm."),
         )
 }
@@ -96,44 +86,43 @@ pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) -> 
     match matches.subcommand() {
         Some(("install", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
-            print!("Installing {}", argument);
-            result = package_manager.execute(CommandType::Install, &argument);
+            result = package_manager.execute(CommandType::Install, &argument, "Installing");
         }
         Some(("uninstall", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
-            print!("Uninstalling {}", argument);
-            result = package_manager.execute(CommandType::Uninstall, &argument);
+            result = package_manager.execute(CommandType::Uninstall, &argument, "Uninstalling");
         }
         Some(("reinstall", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
-            print!("Reinstalling {}", argument);
-            result = package_manager.execute(CommandType::Reinstall, &argument);
+            result = package_manager.execute(CommandType::Reinstall, &argument, "Reinstalling");
         }
         Some(("update", _sub_matches)) => {
-            print!("Updating repos");
-            result = package_manager.execute(CommandType::Update, &"".to_string());
+            result = package_manager.execute(CommandType::Update, &"".to_string(), "Updating");
         }
         Some(("upgrade", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
-            print!("Upgrading {}", argument);
-            result = package_manager.execute(CommandType::Upgrade, &argument);
+            result = package_manager.execute(CommandType::Upgrade, &argument, "Upgrading");
         }
         Some(("search", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
-            print!("Searching for {}", argument);
-            result = package_manager.execute(CommandType::Search, &argument);
+            result = package_manager.execute(CommandType::Search, &argument, "Searching for");
         }
         Some(("list", _sub_matches)) => {
-            print!("Listing all installed packages");
-            result = package_manager.execute(CommandType::List, &"".to_string());
+            result = package_manager.execute(
+                CommandType::List,
+                &"".to_string(),
+                "Listing installed packages",
+            );
         }
         Some(("outdated", _sub_matches)) => {
-            print!("Listing all outdated packages");
-            result = package_manager.execute(CommandType::Outdated, &"".to_string());
+            result = package_manager.execute(
+                CommandType::Outdated,
+                &"".to_string(),
+                "Listing outdated packages",
+            );
         }
         Some(("clean", _sub_matches)) => {
-            print!("Cleaning");
-            result = package_manager.execute(CommandType::Clean, &"".to_string());
+            result = package_manager.execute(CommandType::Clean, &"".to_string(), "Cleaning");
         }
         Some(("info", _sub_matches)) => package_manager.print(),
         _ => {
