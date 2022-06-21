@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_yum() -> PackageManager {
+pub fn yum() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install),
         Command::new("remove", CommandType::Uninstall),

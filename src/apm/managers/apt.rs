@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_apt() -> PackageManager {
+pub fn apt() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install),
         Command::new("remove", CommandType::Uninstall),

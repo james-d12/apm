@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_dnf() -> PackageManager {
+pub fn dnf() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install),
         Command::new("remove", CommandType::Uninstall),

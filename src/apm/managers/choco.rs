@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_choco() -> PackageManager {
+pub fn choco() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install),
         Command::new("uninstall", CommandType::Uninstall),

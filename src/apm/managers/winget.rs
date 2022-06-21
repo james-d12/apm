@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_winget() -> PackageManager {
+pub fn winget() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("install", CommandType::Install),
         Command::new("uninstall", CommandType::Uninstall),

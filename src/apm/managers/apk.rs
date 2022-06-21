@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_apk() -> PackageManager {
+pub fn apk() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("add", CommandType::Install),
         Command::new("del", CommandType::Uninstall),

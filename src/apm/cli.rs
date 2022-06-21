@@ -91,105 +91,54 @@ fn get_argument(sub_matches: &ArgMatches, name: &str) -> String {
     }
 }
 
-pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) {
+pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) -> bool {
+    let mut result = true;
     match matches.subcommand() {
         Some(("install", sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Install);
-
-            if !exists {
-                return;
-            }
-
             let argument = get_argument(sub_matches, "PACKAGE");
             print!("Installing {}", argument);
-            let executed = package_manager.execute(CommandType::Install, &argument);
+            result = package_manager.execute(CommandType::Install, &argument);
         }
         Some(("uninstall", sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Uninstall);
-
-            if !exists {
-                return;
-            }
-
             let argument = get_argument(sub_matches, "PACKAGE");
             print!("Uninstalling {}", argument);
-            let executed = package_manager.execute(CommandType::Uninstall, &argument);
+            result = package_manager.execute(CommandType::Uninstall, &argument);
         }
         Some(("reinstall", sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Reinstall);
-
-            if !exists {
-                return;
-            }
-
             let argument = get_argument(sub_matches, "PACKAGE");
             print!("Reinstalling {}", argument);
-            let executed = package_manager.execute(CommandType::Reinstall, &argument);
+            result = package_manager.execute(CommandType::Reinstall, &argument);
         }
         Some(("update", _sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Update);
-
-            if !exists {
-                return;
-            }
-
             print!("Updating repos");
-            let executed = package_manager.execute(CommandType::Update, &"".to_string());
+            result = package_manager.execute(CommandType::Update, &"".to_string());
         }
         Some(("upgrade", sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Upgrade);
-
-            if !exists {
-                return;
-            }
-
             let argument = get_argument(sub_matches, "PACKAGE");
             print!("Upgrading {}", argument);
-            let executed = package_manager.execute(CommandType::Upgrade, &argument);
+            result = package_manager.execute(CommandType::Upgrade, &argument);
         }
         Some(("search", sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Search);
-
-            if !exists {
-                return;
-            }
-
             let argument = get_argument(sub_matches, "PACKAGE");
             print!("Searching for {}", argument);
-            let executed = package_manager.execute(CommandType::Search, &argument);
+            result = package_manager.execute(CommandType::Search, &argument);
         }
         Some(("list", _sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::List);
-
-            if !exists {
-                return;
-            }
-
             print!("Listing all installed packages");
-            let executed = package_manager.execute(CommandType::List, &"".to_string());
+            result = package_manager.execute(CommandType::List, &"".to_string());
         }
         Some(("outdated", _sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Outdated);
-
-            if !exists {
-                return;
-            }
-
             print!("Listing all outdated packages");
-            let executed = package_manager.execute(CommandType::Outdated, &"".to_string());
+            result = package_manager.execute(CommandType::Outdated, &"".to_string());
         }
         Some(("clean", _sub_matches)) => {
-            let exists = package_manager.does_command_exists(CommandType::Clean);
-
-            if !exists {
-                return;
-            }
-
             print!("Cleaning");
-            let executed = package_manager.execute(CommandType::Clean, &"".to_string());
+            result = package_manager.execute(CommandType::Clean, &"".to_string());
         }
+        Some(("info", _sub_matches)) => package_manager.print(),
         _ => {
-            println!("Invalid command.")
+            println!("Invalid command.");
         }
     }
+    return result;
 }

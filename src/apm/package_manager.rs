@@ -18,16 +18,7 @@ impl PackageManager {
         PackageManager {
             name: name.to_string(),
             package_name: package_name.to_string(),
-            commands: commands,
-        }
-    }
-
-    pub fn does_command_exists(&self, command_type: CommandType) -> bool {
-        let command = self.find_command(command_type);
-
-        match command {
-            Some(_command_object) => true,
-            _ => false,
+            commands,
         }
     }
 
@@ -43,19 +34,12 @@ impl PackageManager {
 
 impl PackageManagement for PackageManager {
     fn print(&self) {
-        println!(
-            "---------------------- {0} ----------------------",
-            self.name
-        );
-        println!("Package Name: {0}", self.package_name);
+        println!("-------- {0} --------", self.name);
+        println!("Package Manager Name: {0}", self.package_name);
         for command in self.commands.iter() {
             println!("{}", command);
         }
-        println!(
-            "----------------------{:-<1$}----------------------",
-            "",
-            self.name.chars().count() + 2
-        );
+        println!("--------{:-<1$}--------", "", self.name.chars().count() + 2);
     }
 
     fn execute(&self, command_type: CommandType, argument: &String) -> bool {
@@ -69,7 +53,10 @@ impl PackageManagement for PackageManager {
                 return res;
             }
             None => {
-                println!("Found nothing.");
+                println!(
+                    "Command type does not exist on current package manager: {}.",
+                    self.name
+                );
                 return false;
             }
         }

@@ -2,7 +2,7 @@ use crate::Command;
 use crate::CommandType;
 use crate::PackageManager;
 
-pub fn get_pacman() -> PackageManager {
+pub fn pacman() -> PackageManager {
     let commands: Vec<Command> = vec![
         Command::new("-S", CommandType::Install),
         Command::new("-R", CommandType::Uninstall),
