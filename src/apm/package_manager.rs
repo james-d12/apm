@@ -4,7 +4,7 @@ use crate::apm::terminal;
 
 pub trait PackageManagement {
     fn print(&self);
-    fn execute(&self, command_type: CommandType, argument: &String, message: &str) -> bool;
+    fn execute(&self, command_type: CommandType, argument: &str, message: &str) -> bool;
 }
 
 pub struct PackageManager {
@@ -42,13 +42,13 @@ impl PackageManagement for PackageManager {
         println!("--------{:-<1$}--------", "", self.name.chars().count() + 2);
     }
 
-    fn execute(&self, command_type: CommandType, argument: &String, message: &str) -> bool {
+    fn execute(&self, command_type: CommandType, argument: &str, message: &str) -> bool {
         let command: Option<&Command> = self.find_command(command_type);
 
         match command {
             Some(x) => {
                 println!("{} {}", message, argument);
-                let argument: String =
+                let argument =
                     format!("{0} {1} {2}", self.package_name, x.name, argument).to_owned();
                 let res = terminal::execute(&argument);
                 return res;

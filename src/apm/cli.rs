@@ -81,7 +81,7 @@ fn get_argument(sub_matches: &ArgMatches, name: &str) -> String {
     }
 }
 
-pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) -> bool {
+pub fn run_cli(matches: &ArgMatches, package_manager: &PackageManager) -> bool {
     let mut result = true;
     match matches.subcommand() {
         Some(("install", sub_matches)) => {
@@ -97,7 +97,7 @@ pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) -> 
             result = package_manager.execute(CommandType::Reinstall, &argument, "Reinstalling");
         }
         Some(("update", _sub_matches)) => {
-            result = package_manager.execute(CommandType::Update, &"".to_string(), "Updating");
+            result = package_manager.execute(CommandType::Update, "", "Updating");
         }
         Some(("upgrade", sub_matches)) => {
             let argument = get_argument(sub_matches, "PACKAGE");
@@ -108,21 +108,14 @@ pub fn match_command(matches: &ArgMatches, package_manager: &PackageManager) -> 
             result = package_manager.execute(CommandType::Search, &argument, "Searching for");
         }
         Some(("list", _sub_matches)) => {
-            result = package_manager.execute(
-                CommandType::List,
-                &"".to_string(),
-                "Listing installed packages",
-            );
+            result = package_manager.execute(CommandType::List, "", "Listing installed packages");
         }
         Some(("outdated", _sub_matches)) => {
-            result = package_manager.execute(
-                CommandType::Outdated,
-                &"".to_string(),
-                "Listing outdated packages",
-            );
+            result =
+                package_manager.execute(CommandType::Outdated, "", "Listing outdated packages");
         }
         Some(("clean", _sub_matches)) => {
-            result = package_manager.execute(CommandType::Clean, &"".to_string(), "Cleaning");
+            result = package_manager.execute(CommandType::Clean, "", "Cleaning");
         }
         Some(("info", _sub_matches)) => package_manager.print(),
         _ => {

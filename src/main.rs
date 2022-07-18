@@ -7,20 +7,17 @@ use apm::package_manager::PackageManagement;
 use apm::package_manager::PackageManager;
 
 fn main() {
-    let package_manager: Option<PackageManager> = apm::managers::decide_package_manager();
+    let package_manager = apm::managers::decide_package_manager();
 
     match package_manager {
         Some(package_manager) => {
             let matches = cli::get_cli().get_matches();
-            let executed = cli::match_command(&matches, &package_manager);
+            let executed = cli::run_cli(&matches, &package_manager);
 
-            match executed {
-                true => {
-                    println!("Finished running command.")
-                }
-                _ => {
-                    println!("Failed running command.")
-                }
+            if executed {
+                println!("Finished running command.");
+            } else {
+                println!("Failed running command.")
             }
         }
         None => {

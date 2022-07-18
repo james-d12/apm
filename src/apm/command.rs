@@ -12,7 +12,7 @@ pub enum CommandType {
     Outdated,
 }
 
-pub fn get_command_type_as_string(command_type: CommandType) -> String {
+fn command_type_as_string(command_type: CommandType) -> String {
     return command_type.to_string().to_lowercase();
 }
 
@@ -33,7 +33,7 @@ impl Command {
 
 impl std::fmt::Display for Command {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let command_type = get_command_type_as_string(self.command_type);
+        let command_type = command_type_as_string(self.command_type);
         write!(f, "{0} | Command Type: {1}", self.name, command_type)
     }
 }
