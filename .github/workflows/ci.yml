@@ -32,13 +32,10 @@ jobs:
     - name: Bench
       run: cargo bench
 
-  Docs: 
-    runs-on: ubuntu-latest
-    steps:
     - name: Docs
-      run: cargo doc; ls -la ${{ runner.workspace }}/Apm; ls -la ${{ runner.workspace }}
+      run: cargo doc
 
     - uses: actions/upload-artifact@v3
       with:
         name: apm-docs
-        path: ${{ runner.workspace }}/Apm/target/doc
+        path: ${{ runner.workspace }}/target/doc
