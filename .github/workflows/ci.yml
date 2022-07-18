@@ -10,7 +10,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  CI:
     strategy:
       matrix:
         operating_system: [ubuntu-latest, windows-latest, macos-latest]
@@ -32,8 +32,11 @@ jobs:
     - name: Bench
       run: cargo bench
 
+  Docs: 
+    runs-on: ubuntu-latest
+    steps:
     - name: Docs
-      run: cargo bench
+      run: cargo doc; ls -la ${{ runner.workspace }}/Apm; ls -la ${{ runner.workspace }}
 
     - uses: actions/upload-artifact@v3
       with:
