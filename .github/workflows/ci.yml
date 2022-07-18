@@ -1,10 +1,10 @@
-name: Build
+name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 env:
   CARGO_TERM_COLOR: always
@@ -12,10 +12,9 @@ env:
 jobs:
   build:
     strategy:
-        matrix:
-            operating_system: [ ubuntu-latest, windows-latest ]
+      matrix:
+        operating_system: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.operating_system }}
-
     steps:
     - uses: actions/checkout@v2
     - name: Build
@@ -27,10 +26,13 @@ jobs:
     - name: Check
       run: cargo check 
 
+    - name: Format
+      run: cargo fmt --all -- --check
+
     - name: Bench
       run: cargo bench
 
-    - name: Doc
+    - name: Docs
       run: cargo bench
 
     - uses: actions/upload-artifact@v3
