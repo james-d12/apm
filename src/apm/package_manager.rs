@@ -34,12 +34,11 @@ impl PackageManager {
 
 impl PackageManagement for PackageManager {
     fn print(&self) {
-        println!("-------- {0} --------", self.name);
-        println!("Package Manager Name: {0}", self.package_name);
+        println!("------------- {0} -------------", self.name);
         for command in self.commands.iter() {
-            println!("{}", command);
+            println!("- {}", command);
         }
-        println!("--------{:-<1$}--------", "", self.name.chars().count() + 2);
+        println!("-------------{:-<1$}-------------", "", self.name.chars().count() + 2);
     }
 
     fn execute(&self, command_type: CommandType, argument: &str, message: &str) -> bool {

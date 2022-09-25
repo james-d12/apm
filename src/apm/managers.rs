@@ -1,7 +1,7 @@
 mod apk;
 mod apt;
 mod brew;
-mod choco;
+mod winget;
 mod dnf;
 mod eopkg;
 mod pacman;
@@ -28,7 +28,7 @@ pub fn decide_package_manager() -> Option<PackageManager> {
         Type::openSUSE => package_manager = zypper::zypper(),
         Type::Macos => package_manager = brew::brew(),
         Type::Solus => package_manager = eopkg::eopkg(),
-        Type::Windows => package_manager = choco::choco(),
+        Type::Windows => package_manager = winget::winget(),
         _ => return None,
     }
     return Some(package_manager);

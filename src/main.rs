@@ -12,13 +12,7 @@ fn main() {
     match package_manager {
         Some(package_manager) => {
             let matches = cli::get_cli().get_matches();
-            let executed = cli::run_cli(&matches, &package_manager);
-
-            if executed {
-                println!("Finished running command.");
-            } else {
-                println!("Failed running command.")
-            }
+            cli::run_cli(&matches, &package_manager);
         }
         None => {
             println!("Could not find appropriate package manager for current system.");

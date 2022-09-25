@@ -8,3 +8,4 @@ edition = "2018"
 [dependencies]
 os_info = "3.4.0"
 clap = "3.2.5"
+indicatif = "0.17.1"

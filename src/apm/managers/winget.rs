@@ -7,7 +7,7 @@ pub fn winget() -> PackageManager {
         Command::new("install", CommandType::Install),
         Command::new("uninstall", CommandType::Uninstall),
         Command::new("install", CommandType::Reinstall),
-        Command::new("upgrade --all", CommandType::Update),
+        Command::new("upgrade --include-unknown", CommandType::Update),
         Command::new("upgrade", CommandType::Upgrade),
         Command::new("search", CommandType::Search),
         Command::new("list", CommandType::List),
