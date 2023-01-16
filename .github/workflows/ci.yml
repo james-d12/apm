@@ -13,10 +13,10 @@ jobs:
   CI:
     strategy:
       matrix:
-        operating_system: [ubuntu-latest, windows-latest, macos-latest]
+        operating_system: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.operating_system }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build
       run: cargo build --verbose
 
