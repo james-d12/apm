@@ -1,10 +1,10 @@
 mod apk;
 mod apt;
 mod brew;
-mod winget;
 mod dnf;
 mod eopkg;
 mod pacman;
+mod winget;
 mod yum;
 mod zypper;
 

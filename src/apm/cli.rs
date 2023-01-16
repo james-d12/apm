@@ -4,7 +4,7 @@ use crate::CommandType;
 use crate::PackageManagement;
 use crate::PackageManager;
 
-pub fn get_cli() -> Command<'static> {
+pub fn get_cli() -> Command {
     Command::new("Agnostic Package Manager")
         .version("0.2")
         .author("James Durban")

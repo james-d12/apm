@@ -38,7 +38,11 @@ impl PackageManagement for PackageManager {
         for command in self.commands.iter() {
             println!("- {}", command);
         }
-        println!("-------------{:-<1$}-------------", "", self.name.chars().count() + 2);
+        println!(
+            "-------------{:-<1$}-------------",
+            "",
+            self.name.chars().count() + 2
+        );
     }
 
     fn execute(&self, command_type: CommandType, argument: &str, message: &str) -> bool {
