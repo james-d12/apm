@@ -122,5 +122,5 @@ pub fn run_cli(matches: &ArgMatches, package_manager: &PackageManager) -> bool {
             println!("Invalid command.");
         }
     }
-    return result;
+    result
 }

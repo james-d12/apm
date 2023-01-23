@@ -13,5 +13,5 @@ pub fn eopkg() -> PackageManager {
         Command::new("list", CommandType::List),
         Command::new("li -l", CommandType::Clean),
     ];
-    return PackageManager::new("EOPKG Package Manager", "eopkg", commands);
+    PackageManager::new("EOPKG Package Manager", "eopkg", commands)
 }

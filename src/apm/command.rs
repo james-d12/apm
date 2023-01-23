@@ -13,7 +13,7 @@ pub enum CommandType {
 }
 
 fn command_type_as_string(command_type: CommandType) -> String {
-    return command_type.to_string().to_lowercase();
+    command_type.to_string().to_lowercase()
 }
 
 #[derive(PartialEq, PartialOrd)]

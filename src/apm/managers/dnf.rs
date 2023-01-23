@@ -13,5 +13,5 @@ pub fn dnf() -> PackageManager {
         Command::new("list", CommandType::List),
         Command::new("clean", CommandType::Clean),
     ];
-    return PackageManager::new("Dandifed Yum Package Manager", "dnf", commands);
+    PackageManager::new("Dandifed Yum Package Manager", "dnf", commands)
 }

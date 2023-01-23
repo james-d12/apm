@@ -13,5 +13,5 @@ pub fn zypper() -> PackageManager {
         Command::new("search -i", CommandType::List),
         Command::new("clean", CommandType::Clean),
     ];
-    return PackageManager::new("Zypper Package Manager", "zypper", commands);
+    PackageManager::new("Zypper Package Manager", "zypper", commands)
 }

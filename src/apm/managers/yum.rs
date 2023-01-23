@@ -13,5 +13,5 @@ pub fn yum() -> PackageManager {
         Command::new("list", CommandType::List),
         Command::new("clean all", CommandType::Clean),
     ];
-    return PackageManager::new("Yum Package Manager", "yum", commands);
+    PackageManager::new("Yum Package Manager", "yum", commands)
 }

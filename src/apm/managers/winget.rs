@@ -13,5 +13,5 @@ pub fn winget() -> PackageManager {
         Command::new("list", CommandType::List),
         Command::new("help", CommandType::Help),
     ];
-    return PackageManager::new("Winget Package Manager", "winget", commands);
+    PackageManager::new("Winget Package Manager", "winget", commands)
 }

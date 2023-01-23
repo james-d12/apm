@@ -23,12 +23,9 @@ impl PackageManager {
     }
 
     fn find_command(&self, command_type: CommandType) -> Option<&Command> {
-        for command in self.commands.iter() {
-            if command.command_type == command_type {
-                return Some(command);
-            }
-        }
-        return None;
+        self.commands
+            .iter()
+            .find(|&command| command.command_type == command_type)
     }
 }
 
@@ -51,17 +48,15 @@ impl PackageManagement for PackageManager {
         match command {
             Some(x) => {
                 println!("{} {}", message, argument);
-                let argument =
-                    format!("{0} {1} {2}", self.package_name, x.name, argument).to_owned();
-                let res = terminal::execute(&argument);
-                return res;
+                let argument = format!("{0} {1} {2}", self.package_name, x.name, argument);
+                terminal::execute(&argument)
             }
             None => {
                 println!(
                     "Command type does not exist on current package manager: {}.",
                     self.name
                 );
-                return false;
+                false
             }
         }
     }

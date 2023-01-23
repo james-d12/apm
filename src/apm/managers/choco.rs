@@ -17,5 +17,5 @@ pub fn choco() -> PackageManager {
         Command::new("help", CommandType::Help),
         Command::new("outdated", CommandType::Outdated),
     ];
-    return PackageManager::new("Chocolatey Package Manager", "choco", commands);
+    PackageManager::new("Chocolatey Package Manager", "choco", commands)
 }

@@ -13,5 +13,5 @@ pub fn apk() -> PackageManager {
         Command::new("info -vv | sort", CommandType::List),
         Command::new("cache clean", CommandType::Clean),
     ];
-    return PackageManager::new("Alpine Package Manager", "apk", commands);
+    PackageManager::new("Alpine Package Manager", "apk", commands)
 }

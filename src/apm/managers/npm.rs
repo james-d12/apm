@@ -10,5 +10,5 @@ pub fn npm() -> PackageManager {
         Command::new("update", CommandType::Update),
         Command::new("update", CommandType::Upgrade),
     ];
-    return PackageManager::new("Node Package Manager", "npm", commands);
+    PackageManager::new("Node Package Manager", "npm", commands)
 }

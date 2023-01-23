@@ -13,5 +13,5 @@ pub fn brew() -> PackageManager {
         Command::new("", CommandType::List),
         Command::new("", CommandType::Clean),
     ];
-    return PackageManager::new("Homebrew Package Manager", "brew", commands);
+    PackageManager::new("Homebrew Package Manager", "brew", commands)
 }

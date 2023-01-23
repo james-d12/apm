@@ -13,5 +13,5 @@ pub fn apt() -> PackageManager {
         Command::new("list", CommandType::List),
         Command::new("clean", CommandType::Clean),
     ];
-    return PackageManager::new("Aptitude Package Manager", "apt-get", commands);
+    PackageManager::new("Aptitude Package Manager", "apt-get", commands)
 }

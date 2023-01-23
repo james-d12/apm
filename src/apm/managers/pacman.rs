@@ -13,5 +13,5 @@ pub fn pacman() -> PackageManager {
         Command::new("-Q", CommandType::List),
         Command::new("-Sc", CommandType::Clean),
     ];
-    return PackageManager::new("Pacman Package Manager", "pacman", commands);
+    PackageManager::new("Pacman Package Manager", "pacman", commands)
 }

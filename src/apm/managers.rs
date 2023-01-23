@@ -12,24 +12,23 @@ use crate::PackageManager;
 use os_info::Type;
 
 pub fn decide_package_manager() -> Option<PackageManager> {
-    let package_manager: PackageManager;
-    match os_info::get().os_type() {
-        Type::Alpine => package_manager = apk::apk(),
-        Type::Arch => package_manager = pacman::pacman(),
-        Type::CentOS => package_manager = yum::yum(),
-        Type::EndeavourOS => package_manager = apt::apt(),
-        Type::Manjaro => package_manager = pacman::pacman(),
-        Type::Ubuntu => package_manager = apt::apt(),
-        Type::Debian => package_manager = apt::apt(),
-        Type::Mint => package_manager = apt::apt(),
-        Type::Pop => package_manager = apt::apt(),
-        Type::Fedora => package_manager = dnf::dnf(),
-        Type::Redhat => package_manager = yum::yum(),
-        Type::openSUSE => package_manager = zypper::zypper(),
-        Type::Macos => package_manager = brew::brew(),
-        Type::Solus => package_manager = eopkg::eopkg(),
-        Type::Windows => package_manager = winget::winget(),
+    let package_manager = match os_info::get().os_type() {
+        Type::Alpine => apk::apk(),
+        Type::Arch => pacman::pacman(),
+        Type::CentOS => yum::yum(),
+        Type::EndeavourOS => apt::apt(),
+        Type::Manjaro => pacman::pacman(),
+        Type::Ubuntu => apt::apt(),
+        Type::Debian => apt::apt(),
+        Type::Mint => apt::apt(),
+        Type::Pop => apt::apt(),
+        Type::Fedora => dnf::dnf(),
+        Type::Redhat => yum::yum(),
+        Type::openSUSE => zypper::zypper(),
+        Type::Macos => brew::brew(),
+        Type::Solus => eopkg::eopkg(),
+        Type::Windows => winget::winget(),
         _ => return None,
-    }
-    return Some(package_manager);
+    };
+    Some(package_manager)
 }
