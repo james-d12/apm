@@ -1,14 +1,14 @@
 mod apk;
 mod apt;
 mod brew;
+mod choco;
 mod dnf;
 mod eopkg;
+mod npm;
 mod pacman;
 mod winget;
 mod yum;
 mod zypper;
-mod choco;
-mod npm;
 
 use crate::PackageManager;
 use os_info::Type;
