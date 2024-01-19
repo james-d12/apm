@@ -7,6 +7,8 @@ mod pacman;
 mod winget;
 mod yum;
 mod zypper;
+mod choco;
+mod npm;
 
 use crate::PackageManager;
 use os_info::Type;
