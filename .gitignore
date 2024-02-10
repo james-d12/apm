@@ -2,3 +2,7 @@
 /.vs
 /.vscode
 ./.idea
+/.idea/.gitignore
+/.idea/Apm.iml
+/.idea/modules.xml
+/.idea/vcs.xml
