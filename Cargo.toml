@@ -7,5 +7,5 @@ edition = "2018"
 
 [dependencies]
 os_info = "3.8.1"
-clap = "4.5.1"
+clap = "4.5.3"
 indicatif = "0.17.8"
