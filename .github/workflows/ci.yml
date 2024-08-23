@@ -41,5 +41,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: apm-docs-
+          name: apm-docs
           path: ${{ runner.workspace }}/Apm/target/doc
