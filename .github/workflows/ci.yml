@@ -16,7 +16,7 @@ jobs:
         operating_system: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.operating_system }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build
       run: cargo build --verbose
 
@@ -35,7 +35,7 @@ jobs:
     - name: Docs
       run: cargo doc
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: apm-docs
-        path: ${{ runner.workspace }}/target/doc
+        path: ${{ runner.workspace }}/Apm/target/doc
