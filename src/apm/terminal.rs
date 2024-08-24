@@ -7,9 +7,13 @@ pub fn execute(command: &str) -> bool {
     match result {
         Ok(status) => status.success(),
         Err(error) => {
-            println!("Error: {0} whilst trying to execute {1}.", error.to_string(), command);
+            println!(
+                "Error: {0} whilst trying to execute {1}.",
+                error,
+                command
+            );
             false
-        },
+        }
     }
 }
 
@@ -20,13 +24,17 @@ pub fn check_executable_exists(executable: &str) -> bool {
         .stdout(Stdio::null())
         .stderr(Stdio::null())
         .status();
-    
+
     match result {
-        Ok(status) => status.success(), 
+        Ok(status) => status.success(),
         Err(error) => {
-            println!("Error: {0} whilst trying to check executable {1} exists.", error.to_string(), executable);
+            println!(
+                "Error: {0} whilst trying to check executable {1} exists.",
+                error,
+                executable
+            );
             false
-        },
+        }
     }
 }
 
@@ -37,29 +45,37 @@ pub fn execute(command: &str) -> bool {
     match result {
         Ok(status) => status.success(),
         Err(error) => {
-            println!("Error: {0} whilst trying to execute {1}.", error.to_string(), command);
+            println!(
+                "Error: {0} whilst trying to execute {1}.",
+                error.to_string(),
+                command
+            );
             false
-        },
+        }
     }
 }
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 pub fn check_executable_exists(executable: &str) -> bool {
-    let result = Command::new("sh").arg("-c")
+    let result = Command::new("sh")
+        .arg("-c")
         .arg(executable)
         .stdout(Stdio::null())
         .stderr(Stdio::null())
         .status();
-    
+
     match result {
         Ok(status) => status.success(),
         Err(error) => {
-            println!("Error: {0} whilst trying to check executable {1} exists.", error.to_string(), executable);
+            println!(
+                "Error: {0} whilst trying to check executable {1} exists.",
+                error.to_string(),
+                executable
+            );
             false
-        },
+        }
     }
 }
-
 
 #[cfg(test)]
 mod tests {

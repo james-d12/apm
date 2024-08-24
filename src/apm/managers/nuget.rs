@@ -7,7 +7,7 @@ pub fn nuget() -> PackageManager {
         Command::new("add", CommandType::Install),
         Command::new("delete", CommandType::Uninstall),
         Command::new("add", CommandType::Reinstall),
-        Command::new("update", CommandType::Update)
+        Command::new("update", CommandType::Update),
     ];
     PackageManager::new("Nuget Package Manager", "dotnet nuget", commands)
 }

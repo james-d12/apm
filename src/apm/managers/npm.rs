@@ -9,7 +9,7 @@ pub fn npm() -> PackageManager {
         Command::new("install", CommandType::Reinstall),
         Command::new("update", CommandType::Update),
         Command::new("update", CommandType::Upgrade),
-        Command::new("search", CommandType::Search)
+        Command::new("search", CommandType::Search),
     ];
     PackageManager::new("Node Package Manager", "npm", commands)
 }
