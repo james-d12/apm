@@ -1,10 +1,8 @@
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 #[cfg(target_os = "windows")]
 pub fn execute(command: &str) -> bool {
-    let result = Command::new("cmd")
-        .args(["/C", command])
-        .status();
+    let result = Command::new("cmd").args(["/C", command]).status();
 
     match result {
         Ok(status) => status.success(),
@@ -17,7 +15,11 @@ pub fn execute(command: &str) -> bool {
 
 #[cfg(target_os = "windows")]
 pub fn check_executable_exists(executable: &str) -> bool {
-    let result = Command::new("cmd").args(["/C", executable]).status();
+    let result = Command::new("cmd")
+        .args(["/C", executable])
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .status();
     
     match result {
         Ok(status) => status.success(), 
@@ -43,7 +45,11 @@ pub fn execute(command: &str) -> bool {
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 pub fn check_executable_exists(executable: &str) -> bool {
-    let result = Command::new("sh").arg("-c").arg(executable).status();
+    let result = Command::new("sh").arg("-c")
+        .arg(executable)
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .status();
     
     match result {
         Ok(status) => status.success(),
