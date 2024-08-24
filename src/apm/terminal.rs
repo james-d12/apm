@@ -7,11 +7,7 @@ pub fn execute(command: &str) -> bool {
     match result {
         Ok(status) => status.success(),
         Err(error) => {
-            println!(
-                "Error: {0} whilst trying to execute {1}.",
-                error,
-                command
-            );
+            println!("Error: {0} whilst trying to execute {1}.", error, command);
             false
         }
     }
@@ -30,8 +26,7 @@ pub fn check_executable_exists(executable: &str) -> bool {
         Err(error) => {
             println!(
                 "Error: {0} whilst trying to check executable {1} exists.",
-                error,
-                executable
+                error, executable
             );
             false
         }
