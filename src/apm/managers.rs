@@ -5,6 +5,7 @@ mod choco;
 mod dnf;
 mod eopkg;
 mod npm;
+mod nuget;
 mod pacman;
 mod winget;
 mod yum;
