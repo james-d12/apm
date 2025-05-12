@@ -6,6 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-os_info = "3.10.0"
+os_info = "3.11.0"
 clap = "4.5.37"
 indicatif = "0.17.11"
