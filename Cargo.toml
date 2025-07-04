@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 os_info = "3.11.0"
 clap = "4.5.40"
-indicatif = "0.17.11"
+indicatif = "0.18.0"
