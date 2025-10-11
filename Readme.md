@@ -1,6 +1,6 @@
 # Agnostic Package Manager
 
-[![Build](https://github.com/james-d12/Apm/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/james-d12/Apm/actions/workflows/ci.yml)
+[![CI](https://github.com/james-d12/apm/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/james-d12/apm/actions/workflows/ci.yml)
 
 APM aims to be a multipurpose multiplatform package manager that wraps around some of the most common package managers for various distributions and platforms, making managing packages easier and less hassle.
 
