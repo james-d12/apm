@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 os_info = "3.13.0"
-clap = "4.5.52"
+clap = "4.5.53"
